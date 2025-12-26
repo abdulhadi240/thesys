@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n Chat Widget</title>
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/genui-widget/dist/genui-widget.css"
+      rel="stylesheet"
+    />
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+    </style>
+</head>
+<body>
+
+    <script type="module">
+      import { createChat } from "https://cdn.jsdelivr.net/npm/genui-widget/dist/genui-widget.es.js";
+
+      createChat({
+        // --- n8n Configuration ---
+        n8n: {
+          // REPLACE THIS with your actual n8n Production Webhook URL
+          webhookUrl: "https://socialact-media.app.n8n.cloud/webhook/8514adf4-3883-4145-b3df-e4446e61c5a5/chat",
+          
+          // Set to true if your n8n workflow streams responses back
+          enableStreaming: true, 
+        },
+
+        // --- Optional UI Settings ---
+        agentName: "n8n Bot",       // Name displayed at the top
+        theme: { mode: "light" },   // 'light' or 'dark'
+        mode: "fullscreen",         // 'fullscreen' or 'sidepanel'
+        
+        // Use 'localstorage' for n8n so the user sees history if they refresh
+        storageType: "localstorage", 
+
+        // --- Debugging (Optional) ---
+        enableDebugLogging: true,   // Check browser console (F12) for errors
+        onError: (error) => {
+             console.error("Chat Widget Error:", error);
+        }
+      });
+    </script>
+
+</body>
+</html>
